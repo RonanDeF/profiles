@@ -379,7 +379,8 @@ def get_image(uid):
 
     # Return stored Image
     if image:
-        return image, 200, {'Content-Type': 'image/jpeg', 'Cache-Control': 'max-age=31536000'}
+        if open(image, 'b') != 0:
+            return image, 200, {'Content-Type': 'image/jpeg', 'Cache-Control': 'max-age=31536000'}
 
     # Get Gravatar
     url = get_gravatar(uid)
